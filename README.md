@@ -10,3 +10,5 @@ Set evironment variables:
 - DBUSER
 - DBPASS
 - DBNAME
+
+uwsgi --socket 0.0.0.0:3031 --uid uwsgi --plugin python3 --protocol uwsgi --wsgi service:__main__ --venv $(pipenv --venv)
