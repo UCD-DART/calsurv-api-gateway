@@ -7,25 +7,15 @@ services:
     environment:
       - POSTGRES_USER=kong
       - POSTGRES_DB=kong
-  kong-migrate:
-    image: kong:latest
-    depends_on: 
-      - kong-database
-    environment:
-      - KONG_DATABASE=postgres
-      - KONG_PG_HOST=kong-database
-    volumes:
-      - ./migrate.sh:/migrate.sh
-    command: sh -c "chmod u+x /migrate.sh && /migrate.sh"
   kong:
     image: kong:latest
-    #volumes:
-      #- /etc/ssl/certs/calsurv.cert:/etc/ssl/certs/calsurv.cert:ro
-      #- /etc/ssl/private/calsurv.key:/etc/ssl/private/calsurv.key:ro
     env_file:
       - ./kong.env
+    volumes:
+      - ./migrate.sh:/migrate.sh
     ports: 
       - 8000:8000
       - 8001:8001
     depends_on: 
-      - kong-migrate
+      - kong-database
+    command: sh -c "chmod u+x /migrate.sh && /migrate.sh && /docker-entrypoint.sh kong docker-start"
