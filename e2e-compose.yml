@@ -4,4 +4,4 @@ services:
     image: alpine
     volumes:
       - ./wait-for.sh:/wait-for.sh
-    command: sh -c "chmod u+x /wait-for.sh && /wait-for.sh ko2ng:8000"
+    command: sh -c "chmod u+x /wait-for.sh && /wait-for.sh kong:8000"

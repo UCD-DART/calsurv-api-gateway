@@ -1,0 +1,9 @@
+version: '3'
+services:
+  kong:
+    volumes:
+      - /etc/ssl/certs/calsurv.cert:/etc/ssl/certs/calsurv.cert:ro
+      - /etc/ssl/private/calsurv.key:/etc/ssl/private/calsurv.key:ro
+    env_file:
+      - ./kong.env
+      - ./kong.ssl.env
