@@ -1,13 +1,8 @@
 init:
-	pip install pipenv
-	pipenv install --dev
+	ls
 
 test:
-	pycodestyle .
-	pipenv run py.test
-	docker-compose -f docker-compose.yml -f e2e-compose.yml up --exit-code-from e2e
+	docker-compose -f docker-compose.yml -f e2e-compose.yml up
 
 ci: 
-	pycodestyle .
-	pipenv run py.test
-	docker-compose -f docker-compose.yml -f e2e-compose.yml up --exit-code-from e2e
+	docker-compose -f docker-compose.yml -f e2e-compose.yml up

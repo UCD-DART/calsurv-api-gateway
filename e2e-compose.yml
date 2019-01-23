@@ -1,5 +1,7 @@
 version: '3'
 services:
   e2e:
-    build: e2e
-    command: ./wait-for-it.sh frontend:80
+    image: alpine
+    volumes:
+      - ./wait-for.sh:/wait-for.sh
+    command: sh -c "chmod u+x /wait-for.sh && /wait-for.sh ko2ng:8000"
