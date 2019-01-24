@@ -15,7 +15,6 @@ services:
       - ./migrate.sh:/migrate.sh
     ports: 
       - 8000:8000
-      - 8001:8001
     depends_on: 
       - kong-database
     command: sh -c "chmod u+x /migrate.sh && /migrate.sh && /docker-entrypoint.sh kong docker-start"
